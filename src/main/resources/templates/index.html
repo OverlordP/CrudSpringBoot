@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2>Datos personales</h2>
+        <hr/>
+        <div th:if="${personaje != null and !personaje.empty}">
+
+            <table border = 2>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>email</th>                   
+                </tr>
+                <tr th:each="persona : ${personaje}">
+                    <td th:text="${persona.nombre}"></td>
+                    <td th:text="${persona.edad}"></td>
+                    <td th:text="${persona.email}"></td>
+                    <td><a th:text="add" th:href="@{/editar/}+${persona.idpersonas}"></a> </td>
+                    <td><a th:text="eliminar" th:href="@{/eliminar/}+${persona.idpersonas}"></a> </td>
+                </tr>
+            </table>
+            <br/>
+            <a th:href="@{/agregar}">add me</a>
+
+        </div>  
+        
+        <div th:if="${personaje==null or personaje.empty}">
+            <h4>No hay nada aqui safa no mas...</h4>
+        </div>  
+    </body>
+</html>
